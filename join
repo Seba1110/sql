@@ -1,0 +1,25 @@
+SELECT Count(T_Osoba.ID) AS PoliczOfID
+FROM T_Osoba LEFT JOIN tZakwaterowanie ON T_Osoba.ID = tZakwaterowanie.ID
+WHERE (((T_Osoba.Nazwisko) Like "D*" Or (T_Osoba.Nazwisko) Like "K*") AND ((T_Osoba.Imiona) Like "*ł"));
+
+SELECT Min(tWpłaty.Wpłata) AS MinimumOfWpłata, T_Osoba.Pesel
+FROM T_Osoba LEFT JOIN tWpłaty ON T_Osoba.ID = tWpłaty.ID
+WHERE (((T_Osoba.Płeć) Like "Mężczyzna"))
+GROUP BY T_Osoba.Pesel
+HAVING (((T_Osoba.Pesel)=Mid([T_Osoba]![Pesel],3,2)));
+
+SELECT T_Osoba.Imiona
+FROM T_Osoba
+WHERE (((Mid([T_Osoba]![Pesel],1,2))="95"));
+
+SELECT T_Osoba.Nazwisko, tWpłaty.Wpłata, tWpłaty.Data_wpłaty
+FROM T_Osoba LEFT JOIN tWpłaty ON T_Osoba.ID = tWpłaty.ID
+WHERE (((T_Osoba.Nazwisko) Like "A*" Or (T_Osoba.Nazwisko) Like "C*") AND ((tWpłaty.Wpłata) Is Not Null));
+
+
+SELECT T_Osoba.Płeć, T_Osoba.*
+FROM T_Osoba
+WHERE (((T_Osoba.Płeć) Like "Mężczyzna"));
+
+
+
